@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My task manager App</title>
+    </head>
+<body>
+    <form id="userForm" style="margin-left: 500px; margin-top: 150px;">
+
+        <h1>Enter your details</h1>
+
+        <label for="name" >Task Name</label>
+
+        <br><br>
+
+        <input type="text" id="items" name="item"  style="width: 300px; height:25px ;">
+
+        <br><br>
+
+        
+        <button type="button" onclick="handleSubmit()" style="width: 300px; height: 30px;"> Submit</button>
+
+    </form>
+
+    <script>
+        function handleSubmit(){
+            //Get data from the input field
+            let item = document.getElementById('items').value;
+
+            if (item.trim() === "") {
+                alert("Please enter an item.");
+            } else {
+                alert(`${item}, has being added successfully`);
+            }
+        }
+    </script>
+
+</body>
+</html>
