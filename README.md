@@ -1,1 +1,1 @@
-This magages task to enable 
+A Task Manager App is a platform designed to help users efficiently organize, track, and manage tasks or to-do lists. It allows users to create, edit, and delete tasks, set priorities, assign deadlines, and categorize activities based on their purpose.
