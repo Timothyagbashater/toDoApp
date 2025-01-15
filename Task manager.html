@@ -14,27 +14,65 @@
 
         <br><br>
 
-        <input type="text" id="items" placeholder="Enter task name" required style="width: 300px; height: 30px ;">
+        <input type="text" id="userInput" placeholder="Enter task name" required style="width: 300px; height: 30px ;">
 
         <br><br>
 
         
-        <button type="button" onclick="handleSubmit()" style="width: 306px; height: 35px;"> Save</button>
+        <button type="submit" style="width: 306px; height: 35px;"> Save</button>
 
     </form>
+    <h2 style="margin-left: 500px;">List of Saved Items</h2>
+    <ol id="savedList" style="margin-left: 500px;"></ol>
 
     <script>
-        
-        function handleSubmit(){
-            //Get data from the input field
-            let item = document.getElementById('items').value;
+        // Get reference to the from and list
+        const form = document.getElementById('userForm');
+        const inputField = document.getElementById('userInput');
+        const savedList = document.getElementById('savedList');
 
-            if (item.trim() === "") {
-                alert("Please enter an item.");
-            } else {
-                alert(`${item}, has being added successfully`);
-            }
-        }
+
+        // Load and display saved items on the page
+        const loadSavedItems = () => {
+            const savedItems = JSON.parse(localStorage.getItem('userInputs')) || [];
+            savedItems.forEach(item => {
+                addListItem(item)
+            });
+        };
+
+        // Add a new item to the list
+        const addListItem = (text) => {
+            const li = document.createElement('li');
+            li.textContent = text;
+            savedList.appendChild(li);
+        };
+
+        // Handle form submission
+        form.addEventListener('submit', (event) => {
+            // prevents default form submission
+            event.preventDefault();
+
+            // Get user input value
+            const userInput = inputField.value;
+
+            // Get existing items form local storage
+            const savedItems = JSON.parse(localStorage.getItem('userInputs')) || [];
+
+            //  Add new input to the saved array
+            savedItems.push(userInput);
+
+            // Save updated array back to the local storage
+            localStorage.setItem('userInputs', JSON.stringify(savedItems));
+
+            // Add new item to the list on the page
+            addListItem(userInput);
+
+            // Clear inputField
+            inputField.value = '';
+        });
+
+        // Load the saved items when the page loads
+        //loadSavedItems();
 
     </script>
 
